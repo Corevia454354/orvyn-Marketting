@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ORVYN — Less Admin. More Business.</title>
+<meta name="description" content="ORVYN automates the repetitive work behind your service business — enquiries, quotes, and custom workflows — so you can focus on customers." />
+<style>
+  :root {
+    --bg: #0a0b0d;
+    --bg-elev: #131417;
+    --border: #23252b;
+    --text: #f5f6f7;
+    --text-dim: #a4a8b0;
+    --accent: #4f6bff;
+    --accent-soft: rgba(79, 107, 255, 0.12);
+    --radius: 10px;
+    --max: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    line-height: 1.55;
+  }
+  a { color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; border-bottom: 1px solid var(--border); }
+  h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 16px; }
+  h2 { font-size: clamp(28px, 4vw, 40px); }
+  h3 { font-size: 19px; }
+  p { color: var(--text-dim); margin: 0 0 16px; }
+  .eyebrow { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+
+  /* Nav */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,11,13,0.85); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; text-decoration: none; }
+  .logo svg { width: 28px; height: 28px; }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--text-dim); }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 11px 22px; border-radius: var(--radius); font-weight: 600; font-size: 14px;
+    text-decoration: none; cursor: pointer; border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #3d58f0; }
+  .btn-ghost { border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); }
+
+  /* Hero */
+  .hero { padding: 120px 0 96px; text-align: center; }
+  .hero h1 { font-size: clamp(36px, 6vw, 60px); max-width: 820px; margin: 0 auto 20px; }
+  .hero p.lead { font-size: 18px; max-width: 620px; margin: 0 auto 32px; }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; }
+
+  /* Grid cards */
+  .grid { display: grid; gap: 20px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 860px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } .nav-links { display: none; } }
+  .card {
+    background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px;
+  }
+  .card .icon { width: 40px; height: 40px; border-radius: 8px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+  .badge-list { list-style: none; padding: 0; margin: 0; }
+  .badge-list li { display: flex; gap: 10px; padding: 6px 0; color: var(--text-dim); font-size: 14px; }
+  .badge-list li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+  .steps { counter-reset: step; }
+  .step { display: flex; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step .num {
+    counter-increment: step; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step .num::before { content: counter(step); }
+
+  .industries { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill { border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; font-size: 14px; color: var(--text-dim); }
+
+  /* Contact form */
+  form { display: grid; gap: 14px; max-width: 560px; margin: 0 auto; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  label { font-size: 13px; color: var(--text-dim); display: block; margin-bottom: 6px; }
+  input, select, textarea {
+    width: 100%; background: var(--bg-elev); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 11px 13px; font-size: 14px; font-family: inherit;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 90px; }
+  #form-status { font-size: 14px; min-height: 20px; }
+  #form-status.ok { color: #6fe08a; }
+  #form-status.err { color: #ff6b6b; }
+
+  .faq details { border-bottom: 1px solid var(--border); padding: 16px 0; }
+  .faq summary { cursor: pointer; font-weight: 600; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; float: right; color: var(--accent); }
+  .faq details[open] summary::after { content: "–"; }
+
+  footer { padding: 48px 0; text-align: center; color: var(--text-dim); font-size: 13px; }
+  .center { text-align: center; }
+  .max-copy { max-width: 640px; margin: 0 auto 40px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M16 2 L28 9 V23 L16 30 L4 23 V9 Z" stroke="#4f6bff" stroke-width="2"/><path d="M16 9 L22 12.5 V19.5 L16 23 L10 19.5 V12.5 Z" fill="#4f6bff"/></svg>
+        ORVYN
+      </a>
+      <div class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#industries">Industries</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#contact-sales" class="btn btn-primary">Contact Sales</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">AI Business Automation Platform</div>
+      <h1>Less Admin. More Business.</h1>
+      <p class="lead">ORVYN automates the repetitive work behind your business so you can focus on serving customers and growing — enquiries, quotes, and custom workflows, handled.</p>
+      <div class="hero-actions">
+        <a href="#contact-sales" class="btn btn-primary">Contact Sales</a>
+        <a href="#products" class="btn btn-ghost">See what it does</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="problem">
+    <div class="wrap">
+      <div class="max-copy">
+        <div class="eyebrow">The problem</div>
+        <h2>Service businesses lose hours to admin, not to the actual work.</h2>
+        <p>Missed enquiries, manual quoting, and follow-ups that fall through the cracks — every hour spent on paperwork is an hour not spent on the job.</p>
+      </div>
+      <ul class="badge-list grid grid-3" style="list-style:none">
+        <li>Enquiries sit unanswered while you're on-site</li>
+        <li>Quotes take longer to write than to approve</li>
+        <li>Manual follow-ups get forgotten</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="max-copy">
+        <div class="eyebrow">The ORVYN solution</div>
+        <h2>Three products. One platform.</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="icon">🗂</div>
+          <h3>AI Admin Assistant</h3>
+          <p>Reads and summarizes enquiries, extracts customer details, drafts responses for your approval, and keeps your customer records up to date automatically.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📄</div>
+          <h3>AI Quote Generator</h3>
+          <p>Turns a customer request into a professional, branded quote using your pricing rules — AI extracts the requirements, your rules set the price.</p>
+        </div>
+        <div class="card">
+          <div class="icon">⚙️</div>
+          <h3>Custom Automation Studio</h3>
+          <p>Describe a workflow in plain English. ORVYN builds it, you test and approve it, then it runs automatically — no code required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="website">
+    <div class="wrap">
+      <div class="max-copy">
+        <div class="eyebrow">Website integration</div>
+        <h2>Get a Quote, on your own website</h2>
+        <p>Connect your existing site, drop in a snippet, or use a hosted quote page — every enquiry flows straight into your ORVYN dashboard, correctly attributed to your business.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works">
+    <div class="wrap">
+      <div class="max-copy">
+        <div class="eyebrow">How it works</div>
+        <h2>From first conversation to full setup</h2>
+      </div>
+      <div class="steps" style="max-width:680px;margin:0 auto;">
+        <div class="step"><span class="num"></span><div><strong>Contact Sales</strong> — tell us about your business and what you need.</div></div>
+        <div class="step"><span class="num"></span><div><strong>We agree a custom package</strong> — priced for your business, not a generic tier.</div></div>
+        <div class="step"><span class="num"></span><div><strong>Your account is set up</strong> — branding, pricing rules, and integrations configured.</div></div>
+        <div class="step"><span class="num"></span><div><strong>You start using ORVYN</strong> — enquiries, quotes, and automations from day one.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="industries">
+    <div class="wrap">
+      <div class="max-copy">
+        <div class="eyebrow">Built for service businesses</div>
+        <h2>Industries we work with</h2>
+      </div>
+      <div class="industries center" style="justify-content:center">
+        <span class="pill">Plumbers</span><span class="pill">Electricians</span><span class="pill">Builders</span>
+        <span class="pill">Painters</span><span class="pill">Cleaning</span><span class="pill">Landscapers</span>
+        <span class="pill">Mechanics</span><span class="pill">Solar</span><span class="pill">Security</span>
+        <span class="pill">HVAC</span><span class="pill">Maintenance</span><span class="pill">Construction</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="wrap grid grid-2">
+      <div>
+        <div class="eyebrow">Benefits</div>
+        <h2>Built like real business infrastructure</h2>
+        <p>Not a chatbot. Not a prototype. ORVYN is designed to be the operational backbone for how your business handles customers.</p>
+      </div>
+      <ul class="badge-list">
+        <li>Faster response times on every enquiry</li>
+        <li>Consistent, professional quotes every time</li>
+        <li>Fewer things fall through the cracks</li>
+        <li>Your team spends time on the job, not the paperwork</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact-sales">
+    <div class="wrap">
+      <div class="max-copy">
+        <div class="eyebrow">Get started</div>
+        <h2>Contact Sales</h2>
+        <p>Tell us about your business — we'll come back with a package built around what you actually need.</p>
+      </div>
+      <form id="sales-form">
+        <div class="form-row">
+          <div><label for="name">Name</label><input id="name" name="name" required /></div>
+          <div><label for="businessName">Business name</label><input id="businessName" name="businessName" required /></div>
+        </div>
+        <div class="form-row">
+          <div><label for="businessEmail">Business email</label><input id="businessEmail" name="businessEmail" type="email" required /></div>
+          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" /></div>
+        </div>
+        <div class="form-row">
+          <div><label for="industry">Industry</label><input id="industry" name="industry" /></div>
+          <div>
+            <label for="interest">Interested product</label>
+            <select id="interest" name="interest">
+              <option>AI Admin Assistant</option>
+              <option>AI Quote Generator</option>
+              <option>Both</option>
+              <option>Custom Automation</option>
+              <option>Full ORVYN Package</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="description">Tell us about your business</label>
+          <textarea id="description" name="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">Send to Sales</button>
+        <div id="form-status"></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="max-copy">
+        <div class="eyebrow">FAQ</div>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq" style="max-width:720px;margin:0 auto;">
+        <details><summary>Do I need technical knowledge to use ORVYN?</summary><p>No. ORVYN is built specifically so business owners never need to touch APIs, code, or backend systems.</p></details>
+        <details><summary>How is pricing decided?</summary><p>Every business gets a custom package agreed with our sales team — there's no one-size-fits-all tier.</p></details>
+        <details><summary>Can ORVYN connect to my existing website?</summary><p>Yes — via a connected integration, an embed snippet, or a hosted quote page, whichever fits your setup.</p></details>
+        <details><summary>Do you support WhatsApp?</summary><p>Not currently. ORVYN notifications work through your dashboard and email.</p></details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    ORVYN — Less Admin. More Business.<br />
+    © <span id="year"></span> ORVYN. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Point this at your deployed ORVYN API, e.g.
+  // https://api.yourdomain.com/api/leads/public
+  const CONTACT_SALES_ENDPOINT = "REPLACE_WITH_API_URL/api/leads/public";
+
+  const form = document.getElementById('sales-form');
+  const status = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '';
+    status.className = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      if (CONTACT_SALES_ENDPOINT.startsWith('REPLACE_WITH_API_URL')) {
+        throw new Error('Backend endpoint not configured yet.');
+      }
+      const res = await fetch(CONTACT_SALES_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+
+      status.textContent = "Thanks — we'll be in touch shortly.";
+      status.className = 'ok';
+      form.reset();
+    } catch (err) {
+      status.textContent = err.message || 'Could not send your request. Please try again.';
+      status.className = 'err';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send to Sales';
+    }
+  });
+</script>
+
+</body>
+</html>
